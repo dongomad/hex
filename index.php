@@ -17,6 +17,10 @@
         document.body.style.visibility= 'hidden';
         window.onload= function() { document.body.style.visibility= 'visible'; };
 
+
+
+
+
     function poka (id) {
        var e = document.getElementById(id);
        if( e.style.display == 'block'){ e.style.display = 'none';  }
@@ -36,6 +40,11 @@
        		if( e.style.display == 'block'){  $("div.bialypasek").hide();}	
 		else { $("div.bialypasek").hide(); $("#"+id).show();}
 	}
+
+
+
+
+
 
 
 
@@ -83,11 +92,12 @@ echo'
 #przyciskbudynek:active {background: url(mapa/niebieskie.png) -'.(2*$sz).'px 0px; background-size:'.($sz*3).'px;}
 
 
+';if (file_exists("postaci/$user[id].png")){echo ' #postac{width:'.($sz*1.6).'px; height:'.($sz*1.6).'px; background: url(postaci/'.$user[id].'.png) 0px 0px; pointer-events:none; background-size:'.($sz*1.6).'px; bottom:'.($sz*0.1).'px; left:-'.($sz*0.3).'px; position:absolute;} ';} 
+else {echo' #postac{width:'.($sz*1.6).'px; height:'.($sz*1.6).'px; background: url(postaci/brak.png) 0px 0px; pointer-events:none; background-size:'.($sz*1.6).'px; bottom:'.($sz*0.1).'px; left:-'.($sz*0.3).'px; position:absolute;}';} 
+echo'
 
-#postac{width:'.($sz*1.6).'px; height:'.($sz*1.6).'px; background: url(postaci/'.$user[id].'.png) 0px 0px; pointer-events:none; background-size:'.($sz*1.6).'px; bottom:'.($sz*0.1).'px; left:-'.($sz*0.3).'px; position:absolute;}
+
 #mapazaw {width:'.($sz*$im).'px; height:'.($sz*$im).'px; position:relative; margin:auto;}
-
-
 
 #ppole {width:'.$sz.'px; height:'.$sz.'px; background: url(mapa/pole.png) 0px 0px; background-size:'.$sz.'px;}
 #ppiach {width:'.$sz.'px; height:'.$sz.'px; background: url(mapa/piach.png) 0px 0px; background-size:'.$sz.'px;}

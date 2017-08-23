@@ -3,10 +3,6 @@
 .logowanie {position:relative; width:500px; height:500px; top:40px; border: 4px 0px solid gold; border-radius:280px; border:4px solid gold; background-color:#0e0e0e; margin:0px auto; overflow:hidden;}
 .mapa {width:700px; height:600px; margin:0px auto; top:0px; position:relative;}
 
-.rama {width:700px; height:700px; margin:0px auto; top:-100px; position:relative; overflow:hidden; background: url(grafika/rama.png) 0px 0px;   background-size:700px;}
-.ramazaw{width:630px; height:540px; position:absolute; left:35px; top:140px;pointer-events:auto;}
-.ramamenu {width: 400px;height:90px; position:absolute; left:115px;   }
-.ramareszta {width:630px; height:450px; top:90px; position:absolute; }
 
 	/* OGOLNE: */
 .button {cursor: pointer; display:inline-table; position:absolute; width:80px; height:80px; background: url(grafika/ramka.png) 0px 0px; background-size: 160px; background-color: none; border:0px;}
@@ -125,10 +121,10 @@ input[type="checkbox"]:checked + label {display:block;}
 
 	/* MAŁE OKNO js: */
 
-.pokaokno { z-index:100; display:none; overflow:hidden; width:280px; height:243px; position:fixed; top:160px; right:50%; margin-right:-140px;  text-align:center;}
+.pokaokno { z-index:100; display:none; overflow:hidden; width:280px; height:243px; position:fixed; top:230px; right:50%; margin-right:-140px;  text-align:center;}
 .pokaoknohex { pointer-events:auto; width:280px; height:243px; background: url(grafika/czarne.png) 0px 0px; background-size:280px;  }
 .pokaoknonaglowek { text-transform: uppercase; color:gold; position:relative; margin:6px auto; font-size:12px; width:100px; font-weight:bold;}
-.pokaoknotresc {width:100%; height:100%; position:absolute; top:0px; left:0px;}
+.pokaoknotresc { width:100%; height:100%; position:absolute; top:0px; left:0px;}
 
 .pokaoknom { z-index:100; display:none; overflow:hidden; width:140px; height:121px; position:fixed; top:234px; right:50%; margin-right:-70px;  text-align:center;}
 .pokaoknohexm { pointer-events:auto; width:140px; height:121px; background: url(grafika/czarne.png) 0px 0px; background-size:140px;  }
@@ -164,6 +160,8 @@ input[type="checkbox"]:checked + label {display:block;}
 #buttonwykuwaj:hover {background: url(grafika/ramka.png) -60px 0px; background-size:120px; }
 #buttonwykuwaj:active #buttonwykuwajgrafika {position:absolute; left:1px; top:1px; width:58px; height:58px; background: url(grafika/wykuwaj.png) 0px 0px; background-size: 58px;}
 
+.wybornarzedzicalosc {width:160px; height:80px; border:1px solid red; position:absolute; bottom:30px; left:-50px; pointer-events:none; display:none;}
+.formwydobycie:hover .wybornarzedzicalosc {display:inline-block;}
 
 
 #wydprzedmiot {pointer-events:auto;border:0xp; background-none; margin:5px;  width:48px; height:48px; background: url(grafika/ramka.png) 0px 0px; background-size:96px; position:relative; overflow:visible; float:left;}
@@ -179,23 +177,54 @@ input[type="checkbox"]:checked + label {display:block;}
 
 	/* PRODUKCJA OKNO js: */
 
-.pokaoknoprod { z-index:100; display:none; overflow:hidden; width:520px; height:443px; position:fixed; top:120px; right:50%; margin-right:-260px;  text-align:center;}
-.pokaoknohexprod { pointer-events:auto; width:520px; height:443px; background: url(grafika/czarne.png) 0px 0px; background-size:520px;  }
+.pokaoknoprod {pointer-events:none; z-index:100; display:none; overflow:hidden; width:520px; height:443px; position:fixed; top:120px; right:50%; margin-right:-260px;  text-align:center;}
+.pokaoknohexprod { pointer-events:none; width:520px; height:443px; background: url(grafika/czarne.png) 0px 0px; background-size:520px;  }
 .pokaoknonaglowekprod { text-transform: uppercase; color:gold; position:relative; margin:8px auto; font-size:14px; width:100px; font-weight:bold;}
-.pokaoknotrescprod {width:100%; height:100%; position:absolute; top:0px; left:0px;}
+.pokaoknotrescprod {pointer-events:none;width:100%; height:100%; position:absolute; top:0px; left:0px;}
 #usunramkaprod {width:20px;height:20px; position:absolute; top:6px; right:125px;z-index:101;}
 
 
-.przedmiotprod {width:60px; height:60px; background-size:60px; margin:5px; position:relative;}
+.przedmiotprod {width:60px; height:60px; background-size:60px; position:absolute; top:0px; left:0px; pointer-events:none;}
+
+.prodbutton {cursor: pointer;margin-bottom:5px; display:inline-table; position:relative; width:60px; height:60px; background: url(grafika/ramka.png) 0px 0px; background-size: 120px; background-color: none; border:0px;}
+.przedmiotprodobrazek {cursor: pointer; width:40px; height:40px; position:absolute; top:0px; left:0px; margin:10px; z-index:8; pointer-events:none;}
+
+.prodbutton:hover {background: url(grafika/ramka.png) -60px 0px; background-size:120px;}
+.prodbutton:active .przedmiotprodobrazek { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10); }
+#nazwaprzedmiotu { border-top: double 6px gold;text-transform: uppercase; position:absolute; width:80%; left:10%; top:240px; height:20px; padding-top:8px; margin: 0px;color: gold;font-weight:bold; }
+
+.prodprzedmioty {pointer-events:auto; width:500px; height:80px;  position:absolute; left:10px; top:265px;}
+.bagazprzedmiottlo {pointer-events:auto; width:60px; height:60px; background: url(grafika/tlo.png) 0px 0px; background-size:60px; position:relative; margin:2px;}
+.bagazprzedmiotgrafika {pointer-events:none; width:48px; height:48px; position:absolute; left:6px; top:6px; background-size:48px; vertical-align:top;}
+.progile {z-index:3; font-weight:bold; padding:1px; width:18px; height:18px; background:darkgreen;border:2px solid black; border-radius:12px; position:absolute; bottom:1px; right:-6px;color: white;text-align:center; font-size:10px; line-height:20px;}
+.progilemasz {z-index:3; font-weight:bold;padding:1px;  min-width:18px; max-width:32px; height:18px; background:darkred;border:2px solid black; border-radius:12px; position:absolute; top:0px; left:-6px;color: white;text-align:center; font-size:10px; line-height:20px;}
+
+.buttonstrzalka {pointer-events:auto; display:inline-table; width:35px; height:70px; z-index:10; background-color:transparent; border:0px; color:transparent; background: url(grafika/strzalka.png) 0px 0px; background-size:70px;}
+.buttonstrzalka:active { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10); }
+.buttonstrzalkar {pointer-events:auto; display:inline-table; width:35px; height:70px; z-index:10; background-color:transparent; border:0px; color:transparent; background: url(grafika/strzalka.png) -35px 0px; background-size:70px;}
+.buttonstrzalkar:active { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10);}
+
+.przewijkacalosc { position:absolute; top:160px; height:72px; width: 440px; left:40px; }
+
+
+.przedmiotszkol {width:50px; height:50px; background-size:50px; position:absolute; top:0px; left:0px; pointer-events:none;}
+.szkolbutton {cursor: pointer; display:inline-table; position:relative; width:50px; height:50px; background: url(grafika/ramka.png) 0px 0px; background-size: 100px; background-color: none; border:0px;}
+.przedmiotszkolobrazek {cursor: pointer; width:40px; height:40px; position:absolute; top:0px; left:0px; margin:5px; z-index:8; pointer-events:none;}
+.szkolbutton:hover {background: url(grafika/ramka.png) -50px 0px; background-size:100px;}
+.szkolbutton:active .przedmiotszkolobrazek { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10); }
 
 
 
 
-{animation-name:'.$ruch.'; animation-duration:1s; animation-iteration-count:1; animation-delay:0s; animation-direction:alternate, normal; animation-fill-mode:backwards, forwards; animation-timing-function:ease-in-out, linear;
--webkit-animation-name:ruch; -webkit-animation-duration:1s; -webkit-animation-iteration-count:1;  -webkit-animation-delay:0s; -webkit-animation-direction:alternate, normal;}
 
-      @keyframes ruchp {0% { left:-'.$sz.'px;}  100% {left:0px;}}
-      @-webkit-keyframes ruchp {0% { left:-'.$sz.'px;}  100% {left:0px;}}
+
+
+
+
+
+
+
+
 
 
 	/* stare POSTAC, STATY*/

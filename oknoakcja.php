@@ -3,8 +3,14 @@ mysql_query("SET NAMES 'utf8'");
 
 	if ($cel[skrypt]=='tnij'){$naglowek='drzewo';  $plik='lokacje/wydobycie.php';  } 
 	elseif ($cel[skrypt]=='wykuwaj'){$naglowek='skała'; $plik='lokacje/wydobycie.php'; }
-	elseif ($cel[skrypt]=='rozwoj'){if ($cel[specjalne]=='pal'){$naglowek='krwawy pal';} $plik='lokacje/rozwoj.php'; } 
-	elseif ($cel[skrypt]=='piecz'){$naglowek='ognisko';} 
+	elseif ($cel[skrypt]=='rozwoj')
+		{
+		if ($cel[specjalne]=='pal'){$naglowek='krwawy pal';} 
+		if ($cel[specjalne]=='oltarz'){$naglowek='ołtarz';} 
+		$plik='lokacje/rozwoj.php'; } 
+	
+
+	elseif ($cel[skrypt]=='piecz'){$naglowek='ognisko'; $plik='lokacje/ognisko.php';} 
 	elseif ($cel[skrypt]=='low'){$naglowek='łowisko'; $plik='lokacje/wydobycie.php';}
 
 

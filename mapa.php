@@ -7,6 +7,10 @@ require_once 'user.class.php';
 $user = user::getData('', ''); 
 $statystyki= mysql_fetch_array(mysql_query("SELECT * FROM statystyki WHERE id_gracza=$user[id] LIMIT 1;")); 
 
+// DO ZMIANY: pobieranie z ustawień informacji, czy dblclick przy wchodzeniu w lokalizacje - opcje: '' albo 'dbl'
+$dbl='';
+
+
 //mysql_query("UPDATE $user[mapa] SET  skrypt='produkcja', specjalne='kowal', surowiec=0, przeciwnik=0 WHERE id_pola=$user[lokalizacja]  "); 
 
 //mysql_query("UPDATE $user[mapa] SET  specjalne='wieza' WHERE id_pola=$user[lokalizacja]  "); 
@@ -100,6 +104,7 @@ $id_pola=$idp; $idp++;
 
 
 
+
 echo '<div id="p'.$mapa[$id_pola][typ].'" style="position:relative; overflow:visible; float:left;">  ';
 
 if ($mapa[$id_pola][specjalne]!==''){echo'<div style="position:absolute; z-index:3; pointer-events:none;  " id="s'.$mapa[$id_pola][specjalne].'" ></div> ';} 
@@ -112,11 +117,11 @@ elseif (($mapa[$id_pola][skrypt]!=='blokada') and (($id_pola==$user[lokalizacja]
 {
 
 // WALKA:
-if ($mapa[$id_pola][skrypt]=='walka'){echo '<input type="button" id="przyciskwalki"  value="'.$id_pola.'" onclick="poka(';?>'walka<?php echo $id_pola;?>'<?php echo' );">';
+if ($mapa[$id_pola][skrypt]=='walka'){echo '<input type="button" id="przyciskwalki"  value="'.$id_pola.'" on'.$dbl.'click="poka(';?>'walka<?php echo $id_pola;?>'<?php echo' );">';
 include 'oknowalka.php';}
 
 elseif ($mapa[$id_pola][skrypt]!==''){
-echo '<input type="button" id="przyciskakcji"  value="'.$id_pola.'" onclick=" ajax('.$_GET[cal].',';?>'<?php echo $mapa[$id_pola][skrypt];?>' <?php echo' ,this.value,0,0)">';
+echo '<input type="button" id="przyciskakcji"  value="'.$id_pola.'" on'.$dbl.'click=" ajax('.$_GET[cal].',';?>'<?php echo $mapa[$id_pola][skrypt];?>' <?php echo' ,this.value,0,0)">';
 }// koniec elseifa że akcja
 
 // RUCH:

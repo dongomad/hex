@@ -48,6 +48,10 @@ header("Location: index.php");
 echo '<script> ajax (1,0,0,0,0); </script>';
 }}
 
+
+include 'rejestracja.php';
+
+
 echo'
 
 

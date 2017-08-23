@@ -5,7 +5,6 @@ mysql_query("SET NAMES 'utf8'");
 
 	if ($_GET[akcja]==$cel[skrypt]){echo"<script>var e = document.getElementById('akcja$z1');  e.style.display = 'block' ; </script>"; $a=1;}
 
-	if ($cel[specjalne]=='oltarz'){$naglowek='ołtarz'; } 
 
 
 
