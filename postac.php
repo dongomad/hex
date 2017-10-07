@@ -6,13 +6,9 @@ require 'config.php';
 require_once 'user.class.php';
 
 
-// FUNKCJE:
-
-
 $user = user::getData('', '');
 $statystyki= mysql_fetch_array(mysql_query("SELECT * FROM statystyki WHERE id_gracza=$user[id] LIMIT 1;")); 
-
-$cal=$_GET[cal]; $szer=60;
+$szer=60;
 
 
 
@@ -30,10 +26,12 @@ $cal=$_GET[cal]; $szer=60;
 
 	echo'<div class="pokaoknonaglowekprod">'.$user[nazwa].'</div>';
 
-echo '<div style="top:150px; position:relative;left:50px; width:250px; height:250px;">
-<img src="postaciduze/'.$user[id].'.png" style="width:100%; height:100%; z-index:5; position:absolute; left:0px;">
 
-';
+
+// POSTAĆ + UZBROJENIE
+
+echo '<div style="top:125px; position:absolute;left:135px; width:250px; height:250px;">
+<img src="postaciduze/'.$user[id].'.png" style="width:100%; height:100%; z-index:5; position:absolute; left:0px;bottom:0px;">';
 
 $umieszczone=mysql_fetch_array(mysql_query("SELECT * FROM umieszczone WHERE id_gracza='$user[id]' ;")); 
 $i=1; while ($i<10)
@@ -47,7 +45,7 @@ echo'</div></div>';
 
 
 
-	echo'</div></div>';
+	echo'</div></div>'; // koniec głównych divów
 
 
 

@@ -7,16 +7,16 @@ session_start();
 error_reporting(0);
 require 'config.php';
 require_once 'user.class.php';
-//require_once 'funkcje/abagaz.php';
+require_once 'funkcje/abagaz.php';
 $user = user::getData('', '');
-//abagaz ();
+abagaz ();
 $staty= mysql_fetch_array(mysql_query("SELECT * FROM statystyki WHERE id_gracza=$user[id] LIMIT 1;")); 
 
 $x=$user[lokalizacja]%46-3;
 $y=floor ($user[lokalizacja]/46)-2;
 
-echo '<div style="position:absolute; top:0px; left:200px; width:400px; height:14px; color:gold; font-size:14px;text-align:center; font-weight:bold;">
-['.$x.' : '.$y.'] | aurar: '.$user[aurar].' | exp: '.$user[exp].' ko:'.$staty[akondycja].' ży: '.$staty[azycie].' e: '.$user[energia].'
+echo '<div style="position:absolute; top:0px; left:100px; width:600px; height:14px; color:gold; font-size:14px;text-align:center; font-weight:bold;">
+['.$x.' : '.$y.'] | aurar: '.$user[aurar].' | exp: '.$user[exp].'/'.$awanspoz[exp].' ['.$user[poziom].'] ko:'.$staty[akondycja].' ży: '.$staty[azycie].' e: '.$user[energia].' b:'.$staty[audzwig].'/'.$staty[udzwig].'+'.$staty[dodajudzwig].'
 
 </div>';
 
