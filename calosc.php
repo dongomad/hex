@@ -14,6 +14,7 @@ $_SESSION = array ();
 $user = user::getData('', '');}
 
 
+
 if (user::isLogged ()){$user = user::getData('', '');}
 else {include 'logowanie.php'; die; }
 
@@ -36,10 +37,12 @@ $c = floor ($_GET[cal]/10);
 
 
 
-echo'<div style="width:800px; position:relative; top:0px; margin:0px auto;">
-
+echo'<div style="width:800px; position:relative; top:0px; margin:0px auto; ">
 
 <div class="calosc" id="calosc" >';
+
+
+include 'funkcje/awans.php';
 
 $user = user::getData('', '');
 
@@ -54,7 +57,6 @@ include 'menu.php';
 include 'pasek.php';
 
 
-echo'<img src="postaciduze/staryczlowiek.png" style="width:160px; position:fixed; left:10px; bottom:20px;">';
 
 echo '<div style="position:fixed; border:1px solid red; right:10px; bottom:10px;">
 '.$efekt.'</br>
@@ -65,8 +67,8 @@ echo '<div style="position:fixed; border:1px solid red; right:10px; bottom:10px;
 ';
 
 
-
 echo'</div></div>';
+
 
 
 

@@ -10,7 +10,7 @@
   		var naz = document.getElementById('buttonakcjanazwa');
 		document.getElementById('kolkoakcjazmien').id="kolko"+akcja;
 		nag.innerHTML = naglowek;
-		naz.onclick = function(){pobierz(); ajax(<?php echo $_GET[cal];?>,akcja,nazwa,this.value,0);}; 
+		naz.onclick = function(){pobierz(); ajax(<?php echo $_GET[cal];?>,akcja,nazwa,this.value,<?php echo $z3;?>);}; 
 
 	}           
     }
@@ -27,6 +27,7 @@ require 'config.php';
 require_once 'user.class.php';
 require_once 'funkcje/zaloz.php'; 
 require_once 'funkcje/zdejmij.php';
+
 // FUNKCJE:
 
 if ($_GET[akcja]=='zaloz'){$efekt= zaloz();} // 
@@ -34,8 +35,12 @@ elseif ($_GET[akcja]=='zdejmij'){ $efekt= zdejmij();} //
 elseif ($_GET[akcja]=='usun'){require_once 'funkcje/usun.php'; $efekt= usun();}
 elseif ($_GET[akcja]=='usununik' or $_GET[akcja]=='usunzaznaczone'){require_once 'funkcje/usununik.php'; $efekt= usununik();}
 elseif ($_GET[akcja]=='zjedz'){require_once 'funkcje/zjedz.php'; $efekt= zjedz();}
+elseif (($_GET[akcja]=='przekazunik' or $_GET[akcja]=='przekazzaznaczone') and $z3>0){require_once 'funkcje/przekazunik.php'; $efekt=przekazunik($z3,$user[id],$z1);}
+elseif ($_GET[akcja]=='przekaz' and $z3>0){require_once 'funkcje/przekaz.php'; $efekt= przekaz ($user[id],$z1,$z2,$z3);}
 
 
+
+if ($z3>0 and ($akcja=='przekazunik' or $akcja=='przekaz' or $akcja=='przekazzaznaczone' or $akcja=='prz' or $akcja=='0')){$przekaz='przekaz';}
 
 $user = user::getData('', '');
 $umieszczone= mysql_fetch_array(mysql_query("SELECT * FROM umieszczone WHERE id_gracza=$user[id] LIMIT 1;")); 
@@ -55,7 +60,7 @@ case 35: $przedmioty = (mysql_query("SELECT * FROM unikalne WHERE (klasa='cenne'
 }
 
 
-$i=0; $items=1; $im=11; $szer=60;
+$i=0; $items=1; $im=11; $szer=60; if ($inniplik==1){$im=9;}
 $suma=mysql_num_rows($przedmioty); 
 
 echo'<div style="pointer-events:none; width:900px; height:500px;z-index:12; position:absolute; top:55px; right:50px; ">
@@ -66,7 +71,7 @@ echo '<div id="opis"></div>';
 
 while ($i<=$im or $items<=$suma){
 $i2=1;
-$i2m=11;
+$i2m=$im;
 
 
 echo '<div style="height:'.(($szer+10)*$i2m).'px; width:'.($szer+10).'px; float:right;  position:relative; margin:0px 10px;"> '; // div kolumna
@@ -80,7 +85,7 @@ if ($nieunik!==1 or $posiadane[$nazwa]>0){
 $right= abs(6-$i2)*($szer+4)/2 - $i*$szer/2.3;
 $top= $i2*$szer/-3;
 
-
+// OPIS
 
 $itemopis='';
 if ($item[atak]>0){$itemopis.='+'.$item[atak].' ataku ';}
@@ -101,6 +106,7 @@ $itemopis.='<b>regeneruje:</b> ';
 	if ($item[dodajzycie]>0){$itemopis.=''.$item[dodajzycie].' życia ';}
 }
 
+// PRZEDMIOTY UNIKALNE ZAŁOŻONE
 
 if ($nieunik!==1){
 $title=' '.$item[wyswietl].' ['.$item[awytrzymalosc].'/'.$item[wytrzymalosc].']'; 
@@ -120,7 +126,9 @@ $akcjabutton.=',this.value,0,0);"></div>';
 
 }// koniec ifa ze zalozone
 
-else {
+// PRZEDMIOTY UNIKALNE NIEZAŁOŻONE
+
+else {$um=$przekaz;
 
 $checkbox='<div id="checkbox"><p>  
 <input type="checkbox" id="w'.$item[id_przedmiotu].'" name="wyrzuc[]" value="'.$item[id_przedmiotu].'">
@@ -131,10 +139,21 @@ $usun='<div id="kolkousun" title="wyrzuć przedmiot">
 $usun.="  if (confirm ('Chcesz wyrzucić ten przedmiot?')) { ajax($_GET[cal],'usununik',this.value,0,0); }   ";
 $usun.=' "> </div>';
 
+// PRZEKAZANIE, a nie zdjęcie
+if ($przekaz==przekaz){$bagakcja='przekazunik';
+$akcjabutton='<div id="kolkoprzek" title="przekaż">
+<input type="button" style="pointer-events:auto; position:absolute; top:0xp; left:0px; border:0px; background:none; color:transparent; width:100%; height:100%;" value="'.$item[id_przedmiotu].'" onclick=" ';
+$akcjabutton.="  if (confirm ('Chcesz przekazać ten przedmiot?')) { ajax ($_GET[cal],'przekazunik',this.value,0,$z3); }   ";
+$akcjabutton.='"></div>';
+}
+
+
+// ZDJĘCIE, a nie przekazanie
+else {
 $akcjabutton='<div id="kolkozal" title="załóż">
 <input type="button" style="pointer-events:auto; position:absolute; top:0xp; left:0px; border:0px; background:none; color:transparent; width:100%; height:100%;" value="'.$item[id_przedmiotu].'" onclick="ajax('.$_GET[cal].',';
 $akcjabutton.="'zaloz'";
-$akcjabutton.=',this.value,0,0);"></div>';
+$akcjabutton.=',this.value,0,0);"></div>';}
 
 }// koniec elsa że nieumieszczone
 
@@ -142,11 +161,25 @@ $akcjabutton.=',this.value,0,0);"></div>';
 }// koniec ifa że unikalne
 
 
-else {
+// PRZEDMIOTY NIEUNIKALNE
+
+else {$um=$przekaz;
 $title=' '.$item[wyswietl].' x ['.$posiadane[$nazwa].'] ';
 $progbar='<div id="progile">'.$posiadane[$nazwa].'</div>';
 
-if ($klasa=='pokarm'){
+// PRZEKAZ zamiast jedzenia - małe okienko
+if ($przekaz==przekaz){
+$bagakcja='przekaz';
+$przekaznaglowek='PRZEKAŻ</BR>'.$item[wyswietl].' ';
+
+$akcjabutton='<div id="kolkoprzek" title="przekaż">
+<input type="button" style="pointer-events:auto; position:absolute; top:0xp; left:0px; border:0px; background:none; color:transparent; width:100%; height:100%;" onclick=" ';
+$akcjabutton.="  pokazoknoakcjabagaz ('przekaz','$item[nazwa]','$przekaznaglowek',0,$z3);    ";
+$akcjabutton.=' "> </div>';
+}
+
+// JEDZENIE - male okienko
+elseif ($klasa=='pokarm'){
 $bagakcja='zjedz';
 
 $zjedznaglowek='UŻYJ</BR>'.$item[wyswietl].' ';
@@ -160,6 +193,8 @@ $akcjabutton.=' "> </div>';
 }
 
 else{$bagakcja='brak';}
+
+// USUWANIE 
 
 $usunnaglowek='USUŃ</BR>'.$item[wyswietl].' ';
 
@@ -182,7 +217,7 @@ echo '
 onclick="opis '; echo " ('$item[wyswietl]','$itemopis') "; echo' ;" ';
 
 // PODWOJNY KLIK
-if ($bagakcja!=='brak'){echo' ondblclick="ajax ('.$_GET[cal].' '; echo "  ,'$bagakcja','$nazwa',0,0"; echo' );" ';} echo'>
+if ($bagakcja!=='brak'){echo' ondblclick="ajax ('.$_GET[cal].' '; echo "  ,'$bagakcja','$nazwa',0,$z3"; echo' );" ';} echo'>
 
 
 <div id="bagazprzedmiottlo'.$um.'">
@@ -206,9 +241,11 @@ $i++; }
 // __ WYRZUC ZAZNACZONE
 if ($nieunik!==1){
 
+if ($przekaz=='przekaz'){$akcjazaznaczone=przekazzaznaczone; $kolko=przek; $title="przekaż zaznaczone";} else {$akcjazaznaczone=usunzaznaczone; $kolko=usun; $title='wyrzuć zaznaczone';}
+
 echo '
 
-<div id="kolkousun" title="wyrzuć zaznaczone" style="display:block; position:absolute; top:108px; right:-32px;">
+<div id="kolko'.$kolko.'" title="'.$title.'" style="display:block; position:absolute; top:108px; right:-32px;">
 <input type="button" style="pointer-events:auto; position:absolute; top:0xp; left:0px; border:0px; background:none; color:transparent; width:100%; height:100%;" onclick=" '; ?> if (confirm ('Wyrzucić zaznaczone?')) {submitForm();}"> <?php echo' 
 </div>';
 
@@ -249,7 +286,7 @@ var form = document.myform;
            myCheckboxes.push($(this).val());
         });
 
-ajax (<?php echo $cal;?>, 'usunzaznaczone', myCheckboxes );
+ajax (<?php echo $cal;?>, '<?php echo $akcjazaznaczone;?>', myCheckboxes,0,<?php echo $z3;?> );
 }
 
 

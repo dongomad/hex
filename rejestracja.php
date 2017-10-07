@@ -45,7 +45,7 @@ if ($_POST['sendr'] == 1) {
 
         mysql_query("INSERT INTO  users (nazwa, email, pass, plec, lokalizacja, mapa) VALUES('$nazwar','$email','$pass','$plec', 671 ,mapa);") or die ('<p>Wystąpił błąd w zapytaniu i nie udało się zarejestrować użytkownika. [post]</p>');
     	$id = mysql_fetch_array(mysql_query("SELECT id FROM users WHERE nazwa='$nazwar'"));
-       	//mysql_query("INSERT INTO misje (id_gracza) VALUES('$id[0]');") or die ('<p>Wystąpił błąd w zapytaniu i nie udało się zarejestrować użytkownika.[mis]</p>');
+       	mysql_query("INSERT INTO misje (id_gracza) VALUES('$id[0]');") or die ('<p>Wystąpił błąd w zapytaniu i nie udało się zarejestrować użytkownika.[mis]</p>');
         mysql_query("INSERT INTO umieszczone (id_gracza) VALUES('$id[0]');") or die ('<p>Wystąpił błąd w zapytaniu i nie udało się zarejestrować użytkownika.[umies]</p>');
         mysql_query("INSERT INTO statystyki (id_gracza) VALUES('$id[0]');") or die ('<p>Wystąpił błąd w zapytaniu i nie udało się zarejestrować użytkownika.[sta]</p>');
         mysql_query("INSERT INTO posiadane (id_gracza) VALUES('$id[0]');") or die ('<p>Wystąpił błąd w zapytaniu i nie udało się zarejestrować użytkownika.[pos]</p>');
@@ -62,7 +62,7 @@ if ($_POST['sendr'] == 1) {
 
 //___ REJESTRACJA
 
-echo '<div style="width:200px; height:600px; position:absolute; right:10px; top:40px; ">
+echo '<div style="width:200px; height:600px; position:absolute; right:10px; top:80px; ">
 <font style="color:gold"><center><b>REJESTRACJA</b></center></font>
 </br>
 <form method="post" ><center>

@@ -1,8 +1,9 @@
-﻿html {color:white; font-family: oswaldlight, sans-serif; background:black; position:fixed; top:0px;left:0px; width:100%; height:100%; overflow:hidden; outline: none;}
+﻿html {color:white; font-family: oswaldlight, sans-serif; background:black; position:fixed; top:0px;left:0px; width:100%; height:100%; overflow:auto; outline: none;}
 .calosc {position: fixed; top:0px;  width:800px; height:630px; border:0px solid red; margin:0px auto; overflow:visible;}
 .logowanie {position:relative; width:500px; height:500px; top:40px; border: 4px 0px solid gold; border-radius:280px; border:4px solid gold; background-color:#0e0e0e; margin:0px auto; overflow:hidden;}
 .mapa {width:700px; height:600px; margin:0px auto; top:0px; position:relative;}
 
+darkgold {color:#996d15}
 
 	/* OGOLNE: */
 .button {cursor: pointer; display:inline-table; position:absolute; width:80px; height:80px; background: url(grafika/ramka.png) 0px 0px; background-size: 160px; background-color: none; border:0px;}
@@ -10,12 +11,15 @@
 .button:hover {background: url(grafika/ramka.png) -80px 0px; background-size:160px;}
 .button:active .buttongrafika {position:absolute; left:1px; top:1px; width:78px;}
 
+.button:active .buttongrafika { transform:scale(1.04); -webkit-transform:scale(1.04); -moz-transform:scale(1.04); -o-transform:scale(1.04); }
+.button:active .innitlo { transform:scale(1.04); -webkit-transform:scale(1.04); -moz-transform:scale(1.04); -o-transform:scale(1.04); }
+
 .buttonm {cursor:pointer; color:transparent; display:inline-table; position:absolute; width:60px; height:60px; border:0px;}
+.buttonm:active { transform:scale(1.04); -webkit-transform:scale(1.04); -moz-transform:scale(1.04); -o-transform:scale(1.04); z-index:4; }
 .buttonmgrafika {cursor: pointer;width:54px; position:absolute; left:3px; top:3px; z-index:9; pointer-events:none;}
 
-.buttonm:active .buttonmgrafika {position:absolute; left:1px; top:1px; width:58px;}
 
-
+.duzomisji {width:200px; height:200px; border:1px solid red; position:absolute; top:0px; left:0px;}
 
 button::-moz-focus-inner {border: 0;border:none;}
 button:focus {outline:none;border: 0;border:none;}
@@ -24,8 +28,8 @@ input:focus {outline: none; border: 0px solid; border:none;}
 input::-moz-focus-inner {border: 0;border:none;}
 
 
-.czarnetlocale { width:100%; height:100%; position:fixed; left:0px; top:0px; z-index:10; background-color:rgba(0,0,0,0.6);}
-
+.czarnetlocale { width:100%; height:100%; position:fixed; left:0px; top:0px; z-index:10; background-color:rgba(0,0,0,0.6);z-index:40;}
+.nazwainny {position:relative; top:0px; height:12px; font-size:9px; background-color:rgba(0,0,0,0.6); color:white; padding:0.5px 3px;text-transform: uppercase; }
 
 	/* MENU lewe, prawe: */
 
@@ -49,7 +53,7 @@ input[type="checkbox"]:checked + label:before {display:block; background-color: 
 input[type="checkbox"]:checked + label:after {display:block;  font-weight: bold;}
 input[type="checkbox"]:checked + label {display:block;}
 
-#kolkousun {z-index:14;cursor: pointer; position:absolute; z-index:10; display:none;  width:16px; height:16px; border: 1px solid gold; border-radius:10px;  background-color:darkred;   }
+#kolkousun {z-index:11;cursor: pointer; position:absolute; z-index:10; display:none;  width:16px; height:16px; border: 1px solid gold; border-radius:10px;  background-color:darkred;   }
 #kolkousun:after {pointer-events:none;  cursor: pointer; content: "\292B"; color:white; font: 16px/1em sans-serif; position:absolute; left:2.2px; bottom:1px; vertical-align:top; text-align:center; padding:0; }
 #bagazprzedmiot:hover #kolkousun {width:16px; height:16px;  pointer-events:auto; display:block; top:10px; right:-9px;   }
 #bagazprzedmiot:active #kolkousun  {top:12.6px; right:-6px;}
@@ -58,6 +62,12 @@ input[type="checkbox"]:checked + label {display:block;}
 #kolkozal:after {pointer-events:none; content: "\2940"; color:white; font: 16px/1em sans-serif; position:absolute; left:1.8px; bottom:1px; vertical-align:top; text-align:center; padding:0; }
 #bagazprzedmiot:hover #kolkozal {  cursor: pointer; width:16px; height:16px;  pointer-events:auto; display:block; top:10px; left:-9px;   }
 #bagazprzedmiot:active #kolkozal  {  cursor: pointer; top:12.6px; left:-6px;}
+
+#kolkoprzek{z-index:14;cursor: pointer; position:absolute; z-index:10; display:none;  width:16px; height:16px; border: 1px solid gold; border-radius:10px;  background-color:darkgreen;   }
+#kolkoprzek:after {pointer-events:none; content: "\21B7"; color:white; font: 16px/1em sans-serif; position:absolute; left:1.8px; bottom:1px; vertical-align:top; text-align:center; padding:0; }
+#bagazprzedmiot:hover #kolkoprzek {  cursor: pointer; width:16px; height:16px;  pointer-events:auto; display:block; top:10px; left:-9px;   }
+#bagazprzedmiot:active #kolkoprzek  {  cursor: pointer; top:12.6px; left:-6px;}
+
 
 #kolkozdejm{z-index:14;cursor: pointer; position:absolute; z-index:10; display:none;  width:16px; height:16px; border: 1px solid gold; border-radius:10px;  background-color:darkred;   }
 #kolkozdejm:after {pointer-events:none; content: "\27F3"; color:white; font: 16px/1em sans-serif; position:absolute; left:1.8px; bottom:1px; vertical-align:top; text-align:center; padding:0; }
@@ -108,7 +118,7 @@ input[type="checkbox"]:checked + label {display:block;}
 
 	/*  OKNO EFEKT js: */
 
-.pokaoknoefekt {pointer-events:none;  z-index:100; display:none; overflow:hidden; width:154px; height:133px; position:absolute; top:226px; right:50%; margin-right:-77px;  text-align:center;}
+.pokaoknoefekt {pointer-events:none;  z-index:100; display:none; overflow:hidden; width:154px; height:133px; position:absolute; top:280px; right:50%; margin-right:-77px;  text-align:center;}
 .pokaoknohexefekt {width:154px; height:133px; background: url(grafika/czarne.png) 0px 0px; background-size:154px;  }
 .pokaoknotrescefekt {pointe-events:none; width:110px; height:110px; position:absolute; top:35px; left:23px; color:silver; font-size:14px;}
 
@@ -160,8 +170,17 @@ input[type="checkbox"]:checked + label {display:block;}
 #buttonwykuwaj:hover {background: url(grafika/ramka.png) -60px 0px; background-size:120px; }
 #buttonwykuwaj:active #buttonwykuwajgrafika {position:absolute; left:1px; top:1px; width:58px; height:58px; background: url(grafika/wykuwaj.png) 0px 0px; background-size: 58px;}
 
-.wybornarzedzicalosc {width:160px; height:80px; border:1px solid red; position:absolute; bottom:30px; left:-50px; pointer-events:none; display:none;}
-.formwydobycie:hover .wybornarzedzicalosc {display:inline-block;}
+#wydobycie{z-index:10; position:absolute; bottom:10px; left:110px; width:60px; height:60px; background: url(grafika/ramka.png) 0px 0px; background-size: 120px; background-color: none; border:0px;}
+#wydobyciegrafika {width:46px; height:46px; position:absolute; left:7px; top:7px; z-index:9; pointer-events:none; }
+#wydobycietlo {position:absolute; top:1px; left:1px; z-index:8; pointer-events:none; width:58px; height:58px; background: url(grafika/tlo.png) 0px 0px; background-size: 58px;  }
+#wydobycie:hover {background: url(grafika/ramka.png) -60px 0px; background-size:120px; }
+#wydobycie:active #wydobyciegrafika { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10);}
+
+
+.wybornarzedzicalosc {pointer-events:none; width:160px; height:0px; position:absolute; bottom:50px; left:-50px;  opacity:0;   -webkit-transition-delay: 0.6s; -moz-transition-delay: 0.6s; -o-transition-delay: 0.6s; transition-delay: 0.6s;  -webkit-transition-duration: 1s;-moz-transition-duration: 1s;-o-transition-duration: 1s;transition-duration: 1s;}
+.wybornarzedzicaloscbrak {pointer-events:none;  width:160px; height:60px; position:absolute; bottom:50px; left:-50px; opacity:1;}
+.formwydobycie:hover .wybornarzedzicalosc { opacity:1; pointer-events:auto;}
+.formwydobycie:hover .wybornarzedzicaloscbrak {opacity:1; pointer-events:auto;}
 
 
 #wydprzedmiot {pointer-events:auto;border:0xp; background-none; margin:5px;  width:48px; height:48px; background: url(grafika/ramka.png) 0px 0px; background-size:96px; position:relative; overflow:visible; float:left;}
@@ -177,7 +196,7 @@ input[type="checkbox"]:checked + label {display:block;}
 
 	/* PRODUKCJA OKNO js: */
 
-.pokaoknoprod {pointer-events:none; z-index:100; display:none; overflow:hidden; width:520px; height:443px; position:fixed; top:120px; right:50%; margin-right:-260px;  text-align:center;}
+.pokaoknoprod {pointer-events:none; z-index:19; display:none; overflow:hidden; width:520px; height:443px; position:fixed; top:120px; right:50%; margin-right:-260px;  text-align:center;}
 .pokaoknohexprod { pointer-events:none; width:520px; height:443px; background: url(grafika/czarne.png) 0px 0px; background-size:520px;  }
 .pokaoknonaglowekprod { text-transform: uppercase; color:gold; position:relative; margin:8px auto; font-size:14px; width:100px; font-weight:bold;}
 .pokaoknotrescprod {pointer-events:none;width:100%; height:100%; position:absolute; top:0px; left:0px;}
@@ -216,9 +235,83 @@ input[type="checkbox"]:checked + label {display:block;}
 
 
 
+/* INNI */
+.inni { position:absolute; bottom:-35px; height:96px; width: 730px; left:35px; z-index:10;
+     background: -moz-linear-gradient(0deg, rgba(0,0,0,0.2) 0%,  rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.2) 100%); 
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(0,0,0,0.2)), color-stop(50%, rgba(0,0,0,0.2)), color-stop(100%, rgba(0,0,0,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.2) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.2) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(0deg, rgba(0,0,0,0.2) 0%,  rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.2) 100%); /* ie10+ */
+    background: linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.2) 100%); /* w3c */
+ }
+.buttonstrzalkainni {pointer-events:auto; display:inline-table; width:45px; height:90px; z-index:10; background-color:transparent; border:0px; color:transparent; background: url(grafika/strzalka.png) 0px 0px; background-size:90px;}
+.buttonstrzalkainni:active { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10); }
+.buttonstrzalkarinni {pointer-events:auto; display:inline-table; width:45px; height:90px; z-index:10; background-color:transparent; border:0px; color:transparent; background: url(grafika/strzalka.png) -45px 0px; background-size:90px;}
+.buttonstrzalkarinni:active { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10);}
+
+.innitwarzbutton {cursor: pointer;margin:0px 3px 5px 3px; display:inline-table; position:relative; width:90px; height:90px; background: url(grafika/ramka.png) 0px 0px; background-size: 180px; background-color: none; border:0px;}
+.innitwarzbutton:hover {background: url(grafika/ramka.png) -90px 0px; background-size:180px;}
+.innitwarzobrazek {cursor: pointer; width:90px; height:90px; position:absolute; top:0px; left:0px; margin:0px; z-index:8; pointer-events:none;}
+.innitlo {width:90px; height:90px; background-size:90px; position:absolute; top:0px; left:0px; pointer-events:none;}
+.innitwarzbutton:active .innitwarzobrazek { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10); }
+
+
+.innynazwacal {z-index:11; pointer-events:none;position:absolute; left:0; bottom:1px; width:86px; height:13px; background-color:darkgreen; border-radius:9px; border:2px solid black; }
+.innynazwa {position:absolute; left:0px; top:1px; width:86px; text-align:center; color:white; font-size:11px; z-index:2;text-transform: uppercase; font-weight:bold;}
+
+#kolkoprzekaz {z-index:14; display:none; cursor: pointer; position:absolute; top:11px; left:-4px; z-index:10;  width:16px; height:16px; border: 1px solid gold; border-radius:10px;  background-color:darkgreen;   }
+#kolkoprzekaz:after {pointer-events:none; content: "\21B7"; color:white; font: 16px/1em sans-serif; position:absolute; left:1.8px; bottom:1px; vertical-align:top; text-align:center; padding:0; }
+.innitwarzbutton:hover #kolkoprzekaz {  cursor: pointer; width:16px; height:16px;  pointer-events:auto; display:block;   }
+#kolkoprzekaz:active   { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10); }
+
+
+#kolkowiad {z-index:14; display:none; cursor: pointer; position:absolute; top:54px; left:-4px; z-index:10;  width:16px; height:16px; border: 1px solid gold; border-radius:10px;  background-color:darkgreen;   }
+.innitwarzbutton:hover #kolkowiad {  cursor: pointer; width:16px; height:16px;  pointer-events:auto; display:block;   }
+#kolkowiad:after {width:16px; height:16px; cursor: pointer; pointer-events:none; content: "\2709"; color:white;  left:0px; bottom:2px; font: 12px sans-serif; position:absolute; padding:0px; }
+#kolkowiad:active   { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10); }
+
+#kolkowalka {z-index:14;display:none; cursor: pointer; position:absolute; top:11px; right:-4px; z-index:10;  width:16px; height:16px; border: 1px solid gold; border-radius:10px;  background-color:darkred;   }
+.innitwarzbutton:hover #kolkowalka {  cursor: pointer; width:16px; height:16px;  pointer-events:auto; display:block;   }
+#kolkowalka:after {width:16px; height:16px; cursor: pointer; pointer-events:none; content: "\2694"; color:white;  left:0.5px; bottom:3px; font: 14px sans-serif; position:absolute; padding:0px; }
+#kolkowalka:active   { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10); }
+
+#kolkokradziez {z-index:14;display:none; cursor: pointer; position:absolute; top:54px; right:-4px; z-index:10;  width:16px; height:16px; border: 1px solid gold; border-radius:10px;  background-color:darkred;   }
+.innitwarzbutton:hover #kolkokradziez {  cursor: pointer; width:16px; height:16px;  pointer-events:auto; display:block;  }
+#kolkokradziez:after {width:16px; height:16px; cursor: pointer; pointer-events:none; content: "\270A"; color:white;  left:0.5px; bottom:1px; font: 12px sans-serif; position:absolute; padding:0px; }
+#kolkokradziez:active   { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10); }
+
+	/* MISJA*/
+
+.misjacalosc{z-index:21; width:800px;height:620px; position:absolute; top:30px;left:0px;}
+.misjanazwa {text-align:center; text-transform: uppercase; font-weight:bold;color:silver;font-size:18p; }
+.misjatresc {width:780px; height:450px; top:20px; padding: 10px; overflow:hidden;}
+.misjaczlowiekduzy {width:250px; height:400px; position:relative;float:left;background-repeat:no-repeat;vertical-align:top;background-size: contain;}
+.misjaodpowiedzi {width:800px;height:170px;  position:absolute; bottom:0px; text-align:center;}
+
+.misjapytanie {}
+
+.misjawypowiedz {position:relative;top:0px;right:0px; width:100%; height:120px; margin:10px 25px; display:block;}
+.misjawypramka {width:420px; height:121.6px; position:absolute; top:-2px; left:58px;  border-top:2.6px solid #996d15;border-bottom:2.6px solid #996d15;display:table;}
+.misjawypramka::after {content: " ";height:127px; width:63.5px; position:absolute; right:-62.5px; top:-0.5px; background: url(grafika/ramka.png) -63.5px 0px; background-size:254px;}
+
+.misjawyptresc {width:330px; height:100px;padding:5px; top:4px; position:absolute; overflow:auto; text-transform: uppercase; color:white; font-size:13px; font-weight:bold;
+     background: -moz-linear-gradient(0deg, rgba(0,0,0,0.0) 0%,  rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.0) 100%); 
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(0,0,0,0.0)), color-stop(50%, rgba(0,0,0,0.0)), color-stop(100%, rgba(0,0,0,0))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(0deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.0) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(0deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.0) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(0deg, rgba(0,0,0,0.0) 0%,  rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.0) 100%); /* ie10+ */
+    background: linear-gradient(90deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.0) 100%); /* w3c */
+}
+
+.misjaspanpyt {position:relative; width:80%; height:70%; overflow:hidden; display:table-cell; margin:0px; right:10%;pointer-events:none;
+vertical-align:middle; text-transform: uppercase; text-align:center; font-size:8px; font-weight:bold;color:black;z-index:6;}
+.innitwarzbutton:hover .misjaspanpyt {color:#996d15;}
+
+.innitwarzbutton:active .misjaspanpyt { transform:scale(1.10); -webkit-transform:scale(1.10); -moz-transform:scale(1.10); -o-transform:scale(1.10); }
 
 
 
+.misjaspan {display: table-cell;vertical-align:middle;}
 
 
 

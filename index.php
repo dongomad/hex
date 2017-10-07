@@ -67,7 +67,7 @@ if (user::isLogged ()){$user = user::getData('', '');}
 else {include 'logowanie.php'; die; }
 
 require_once 'funkcje/wgrajmape.php';
-wgrajmape ();
+wgrajmape (); 
 
 
 $sz=90;  $szer=60; $im=7;
@@ -95,6 +95,7 @@ echo'
 ';if (file_exists("postaci/$user[id].png")){echo ' #postac{width:'.($sz*1.6).'px; height:'.($sz*1.6).'px; background: url(postaci/'.$user[id].'.png) 0px 0px; pointer-events:none; background-size:'.($sz*1.6).'px; bottom:'.($sz*0.1).'px; left:-'.($sz*0.3).'px; position:absolute;} ';} 
 else {echo' #postac{width:'.($sz*1.6).'px; height:'.($sz*1.6).'px; background: url(postaci/brak.png) 0px 0px; pointer-events:none; background-size:'.($sz*1.6).'px; bottom:'.($sz*0.1).'px; left:-'.($sz*0.3).'px; position:absolute;}';} 
 echo'
+
 
 
 #mapazaw {width:'.($sz*$im).'px; height:'.($sz*$im).'px; position:relative; margin:auto;}
@@ -158,6 +159,7 @@ echo'
 
 #bagazprzedmiottlo {pointer-events:none; width:'.($szer).'px; height:'.($szer).'px; background: url(grafika/tlo.png) 0px 0px; background-size: '.($szer).'px; position:absolute; }
 #bagazprzedmiottloum {pointer-events:none; width:'.($szer).'px; height:'.($szer).'px; background: url(grafika/podswietlone.png) 0px 0px; background-size: '.($szer).'px; position:absolute; }
+#bagazprzedmiottloprzekaz {pointer-events:none; width:'.($szer).'px; height:'.($szer).'px; background: url(grafika/tloprzekaz.png) 0px 0px; background-size: '.($szer).'px; position:absolute; }
 
 #bagazprzedmiotgrafika {pointer-events:none;width:'.($szer*0.7).'px; height:'.($szer*0.7).'px; position:absolute; left:'.($szer*0.15).'px; top:'.($szer*0.15).'px; background-size:'.($szer*0.7).'px; }
 

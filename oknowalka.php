@@ -39,7 +39,7 @@
 		echo'
 
 <div  id="buttonatak"  title="zaatakuj">
-<form><input type="button" style="pointer-events:auto; width:100%; height:100%; background-color:transparent; border:0px; color:transparent;" value="'.$id_pola.'" onclick="ajax(1,';?>'walka'<?php echo',this.value,0,0)"></form>
+<form><input type="button" style="pointer-events:auto; width:100%; height:100%; background-color:transparent; border:0px; color:transparent;" value="'.$id_pola.'" onclick="ajax('.$cal.',';?>'walka'<?php echo',this.value,0,0)"></form>
 <div id="buttonatakgrafika"></div>
 </div>
 
